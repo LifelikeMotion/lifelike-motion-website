@@ -81,7 +81,7 @@ function Hero() {
           your exact needs.
         </motion.h1>
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
-          <a href="/#contact" className="inline-flex items-center justify-center px-8 py-5 text-Button font-semibold rounded-2xl bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-600">
+          <a href="#contact" className="inline-flex items-center justify-center px-8 py-5 text-Button font-semibold rounded-2xl bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-600">
             Get in touch
           </a>
         </motion.div>
@@ -303,7 +303,7 @@ function AppContent() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AppContent />
     </BrowserRouter>
   );
