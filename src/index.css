@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-logo: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --color-accent-500: #FF4B33;
+  --color-accent-600: #E63A24;
+
+  --breakpoint-md: 816px;
+
+  --text-Header: var(--val-Header);
+  --text-Motto: var(--val-Motto);
+  --text-Section: var(--val-Section);
+  --text-Button: var(--val-Button);
+  --text-Logo: var(--val-Logo);
+  --text-Button_Header: var(--val-Button_Header);
+  --text-Footer: var(--val-Footer);
+  --text-Body: var(--val-Body);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --val-Motto: clamp(2.5rem, 2.1825rem + 1.0159vw, 2.7rem);
+    --val-Section: clamp(2.4rem, 2.1619rem + 0.7619vw, 2.55rem);
+    --val-Header: clamp(1.8rem, 1.6472rem + 0.5689vw, 1.9rem);
+    --val-Logo: 1.85rem;
+    --val-Button: clamp(1.125rem, 1.025rem + 0.32vw, 1.188rem);
+    --val-Body: clamp(1.0rem, 0.9rem + 0.32vw, 1.05rem);
+    --val-Button_Header: 1.0rem;
+    --val-Footer: clamp(0.9rem, 0.8206rem + 0.254vw, 0.95rem);
+  }
+
+  @media (min-width: 816px) {
+    :root {
+      --card-height: min(calc(100vh - 12rem), calc(100vw - 12rem), 74rem);
+      --val-Motto: clamp(4.275rem, calc(4.275rem + (var(--card-height) - 30rem) * 0.06), 4.8rem);
+      --val-Section: clamp(2.85rem, 2.3864rem + 0.9091vw, 3rem);
+      --val-Header: clamp(2.137rem, 1.7877rem + 0.6848vw, 2.25rem);
+      --val-Logo: 2.05rem;
+      --val-Button: clamp(1.188rem, 0.9964rem + 0.3758vw, 1.25rem);
+      --val-Body: clamp(1.188rem, 0.9964rem + 0.3758vw, 1.25rem);
+      --val-Button_Header: 1.1rem;
+      --val-Footer: clamp(0.95rem, 0.7955rem + 0.303vw, 1rem);
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  *, ::before, ::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 200ms !important;
+  }
+}
