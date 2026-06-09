@@ -137,14 +137,14 @@ const Navbar = ({ isDark, toggleTheme }: { isDark: boolean, toggleTheme: () => v
     <>
       {!isSupport && !is404 && (
         <>
-          <a href="#offer" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Offer</a>
-          <a href="#portfolio" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Portfolio</a>
+          <Link to="#offer" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Offer</Link>
+          <Link to="#portfolio" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Portfolio</Link>
         </>
       )}
       {isSupport && !is404 && (
-        <a href="#products" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Products</a>
+        <Link to="#products" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Products</Link>
       )}
-      {!is404 && <a href="#contact" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Contact</a>}
+      {!is404 && <Link to="#contact" className="ml-8 text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500 shrink-0 whitespace-nowrap">Contact</Link>}
     </>
   );
 
@@ -313,12 +313,12 @@ function Hero() {
           )}
         </motion.h1>
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
-          <a href={isSupport ? "/support#contact" : "/#contact"} className="inline-flex items-center justify-center px-8 py-5 text-Button font-semibold rounded-2xl bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-600">
+          <Link to={isSupport ? "#contact" : "#contact"} className="inline-flex items-center justify-center px-8 py-5 text-Button font-semibold rounded-2xl bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-600">
             Get in touch
-          </a>
-          <a href={isSupport ? "#products" : "/#offer"} className="inline-flex items-center justify-center px-8 py-5 text-Button font-semibold rounded-2xl bg-white dark:bg-neutral-900 border-2 border-neutral-200 dark:border-neutral-800 text-black dark:text-white hover:bg-neutral-50 active:bg-neutral-50 dark:hover:bg-neutral-800 dark:active:bg-neutral-800">
+          </Link>
+          <Link to={isSupport ? "#products" : "#offer"} className="inline-flex items-center justify-center px-8 py-5 text-Button font-semibold rounded-2xl bg-white dark:bg-neutral-900 border-2 border-neutral-200 dark:border-neutral-800 text-black dark:text-white hover:bg-neutral-50 active:bg-neutral-50 dark:hover:bg-neutral-800 dark:active:bg-neutral-800">
             {isSupport ? "Explore products" : "Explore the offer"}
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
     </section>
@@ -726,13 +726,23 @@ function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'auto';
-    window.scrollTo({ top: 0, behavior: 'auto' });
-    const timer = setTimeout(() => {
-      document.documentElement.style.scrollBehavior = '';
-    }, 10);
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      const timer = setTimeout(() => {
+        document.documentElement.style.scrollBehavior = '';
+      }, 10);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname, location.hash]);
 
   const [isDark, setIsDark] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
