@@ -15,6 +15,29 @@ const ArrowDownIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const LogoSVG = ({ className }: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    aria-label="Lifelike Motion"
+    viewBox="0 0 255 40"
+    className={className}
+    style={{ height: '1.2em', width: 'auto' }}
+  >
+    <text
+      x="0"
+      y="32"
+      fontFamily="'Space Grotesk', system-ui, sans-serif"
+      fontWeight="700"
+      fontSize="36"
+      letterSpacing="-0.025em"
+      fill="currentColor"
+      className="notranslate"
+    >
+      Lifelike <tspan fill="#FF4B33">Motion</tspan>
+    </text>
+  </svg>
+);
+
 const MailIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" className={className}>
     <path d="M162.87-151.87q-37.78 0-64.39-26.61t-26.61-64.39v-474.26q0-37.78 26.61-64.39t64.39-26.61h634.26q37.78 0 64.39 26.61t26.61 64.39v474.26q0 37.78-26.61 64.39t-64.39 26.61H162.87Zm634.26-477.85L504.11-444.87q-5.67 3.48-11.91 5.22-6.24 1.74-12.2 1.74-5.96 0-12.2-1.74-6.24-1.74-11.91-5.22L162.87-629.72v386.85h634.26v-386.85ZM480-517.13l317.13-200H162.87l317.13 200ZM162.87-629.72v10.96-63.93 1.11-35.55 35.59-.86 63.64-10.96 386.85-386.85Z"/>
@@ -128,8 +151,8 @@ const Navbar = ({ isDark, toggleTheme }: { isDark: boolean, toggleTheme: () => v
   }, [isSupport, is404]);
 
   const logo = (
-    <Link to={isSupport ? "/support" : is404 ? location.pathname : "/"} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-Logo font-logo font-bold tracking-tight flex items-center gap-3 text-black dark:text-white shrink-0 whitespace-nowrap">
-      <span>Lifelike <span className="text-accent-500">Motion</span></span>
+    <Link to={isSupport ? "/support" : is404 ? location.pathname : "/"} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-Logo flex items-center gap-3 text-black dark:text-white shrink-0 whitespace-nowrap">
+      <LogoSVG />
     </Link>
   );
 
@@ -551,7 +574,7 @@ function Footer() {
     <footer className="py-12 bg-neutral-50 dark:bg-neutral-950 border-t-2 border-neutral-200 dark:border-neutral-800">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-3 text-black dark:text-white">
-          <span className="font-logo font-bold tracking-tight text-Logo">Lifelike <span className="text-accent-500">Motion</span></span>
+          <LogoSVG className="text-Logo" />
         </div>
         <div className="flex items-center gap-8">
           <a href="https://www.linkedin.com/company/lifelike-motion/" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white hover:text-accent-500 active:text-accent-500 dark:hover:text-accent-500 dark:active:text-accent-500" aria-label="LinkedIn"><FaLinkedin size={28} /></a>
